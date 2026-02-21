@@ -1,0 +1,41 @@
+Given two strings s1 and s2 consisting of only lowercase characters whose anagrams are almost equal.
+The task is to count the number of characters which needs to be deleted to make s1 equal to s2.
+
+Example 1:
+
+Input: s1 = "madame", s2 = "madam"
+Output: 1
+Explanation: string s1 = madame, string s2 = madam. Character 'e' in first string is need to be deleted to make S1 equal to S2.
+Input: s1 = "suryansh", s2 = "suryanshzzawesome"
+Output: 9
+Explanation: string S1 = suryansh, string S2 = suryanshzzawesome. All character after "suryansh" in second string are need to be deleted to make S1 equal to S2.
+Constraints:
+1 <= s1, s2 <= 104
+
+/*Function to count number of characters
+ * to make s1 and s2 equal
+ * s1 : first string
+ * s2 : second string
+ */
+import java.util.Arrays;
+class Geeks {
+
+    static int coutChars(String s1, String s2) {
+
+        // Your code here
+        int []a = new int[26];
+        int []b = new int[26];
+        for(char c: s1.toCharArray()){
+            a[c-'a']++;
+        }
+        for(char c: s2.toCharArray()){
+            b[c-'a']++;
+        }
+        int del = 0;
+        for(int i=0; i<26; i++){
+            del += Math.abs(a[i] - b[i]);
+        }
+        return del;
+        
+    }
+}
