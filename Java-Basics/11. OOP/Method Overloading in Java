@@ -1,0 +1,33 @@
+Implement Calculator class with the following methods to understand Method Overloading in Java:
+Note: Driver code makes all the function calls and print statements.
+
+Name: sum
+Parameters: a(int), b(int)
+Return: sum of a and b -> int
+Name: sum
+Parameters: a(int), b(int), c(int)
+Return: sum of a, b and c -> int
+Name: sum
+Parameters: x(double), y(double)
+Return: sum of x and y -> double
+Example:
+
+Input: a = 5, b = 10, c = 3, x = 15.5, y = 3.5
+Output: 
+15
+18
+19.0
+
+// User function Template for Java
+//  Implement Calculator class with all methods
+class Calculator{
+    int sum(int a, int b){
+        return a+b;
+    }
+    int sum(int a, int b, int c){
+        return a+b+c;
+    }
+    double sum(double x, double y){
+        return x+y;
+    }
+}
