@@ -17,6 +17,9 @@ class Main {
         System.out.println(e);
         System.out.println(f);
         System.out.println(g);
+        System.out.println(a.compareTo(b));
+        System.out.println(b.compareTo(a));
+        System.out.println(a.compareTO(b));  // --> 0 if a=b
     }
 }
 
@@ -28,3 +31,5 @@ O/P=
 100000
 2
 100
+1
+-1
