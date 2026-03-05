@@ -1,0 +1,178 @@
+In Java, exception handling is one of the effective means to handle runtime errors so that the regular flow of the application can be preserved. It handles runtime errors such as NullPointerException, ArrayIndexOutOfBoundsException, etc. To handle these errors effectively, Java provides two keywords, throw and throws.
+
+Java throw
+The throw keyword in Java is used to explicitly throw an exception from a method or any block of code. We can throw either checked or unchecked exception. The throw keyword is mainly used to throw custom exceptions. 
+
+Syntax:
+
+throw Instance
+
+Where instance is an object of type Throwable (or its subclasses, such as Exception).
+
+Example:
+
+throw new ArithmeticException("/ by zero");
+
+But this exception i.e., Instance must be of type Throwable or a subclass of Throwable. 
+
+The flow of execution of the program stops immediately after the throw statement is executed and the nearest enclosing try block is checked to see if it has a catch statement that matches the type of exception. If it finds a match, controlled is transferred to that statement otherwise next enclosing try block is checked and so on. If no matching catch is found then the default exception handler will halt the program. 
+
+Example: This example demonstrates where an exception is thrown, caught and rethrown inside a method.
+
+class Geeks {
+    static void fun()
+    {
+        try {
+            throw new NullPointerException("demo");
+        }
+        catch (NullPointerException e) {
+            System.out.println("Caught inside fun().");
+            throw e;     // rethrowing the exception
+        }
+    }
+
+    public static void main(String args[])
+    {
+        try {
+            fun();
+        }
+        catch (NullPointerException e) {
+            System.out.println("Caught in main.");
+        }
+    }
+}
+
+Output
+Caught inside fun().
+Caught in main.
+Explanation: The above example demonstrates the use of the throw keyword to explicitly throw a NullPointerException. The exception is caught inside the fun() method and rethrown, where it is then caught in the main() method.
+
+Example: This example demonstrates an arithmetic exception.
+
+// Throwing an arithmetic exception
+class Geeks {
+    public static void main(String[] args){
+        int numerator = 1;
+        int denominator = 0;
+
+        if (denominator == 0) {
+            // Manually throw an ArithmeticException
+            throw new ArithmeticException("Cannot divide by zero");
+        } else {
+            System.out.println(numerator / denominator);
+        }
+    }
+}
+
+Output:
+
+Hangup (SIGHUP)
+Exception in thread "main" java.lang.ArithmeticException: Cannot divide by zero
+	at Geeks.main(Geeks.java:9)
+Explanation: The above example demonstrates an exception using throw, where an ArithmeticException is explicitly thrown due to division by zero.
+
+Java throws
+throws is a keyword in Java that is used in the signature of a method to indicate that this method might throw one of the listed type exceptions. The caller to these methods has to handle the exception using a try-catch block. 
+
+Syntax:
+
+type method_name(parameters) throws exception_list
+
+where, exception_list is a comma separated list of all the exceptions which a method might throw.
+
+In a program, if there is a chance of raising an exception then the compiler always warns us about it and we must handle that checked exception, Otherwise, we will get compile time error saying unreported exception XXX must be caught or declared to be thrown. To prevent this compile time error we can handle the exception in two ways: 
+
+By using try catch
+By using the throws keyword
+We can use the throws keyword to delegate the responsibility of exception handling to the caller (It may be a method or JVM) then the caller method is responsible to handle that exception.  
+
+Example 1: Unhandled Exception
+
+
+class Geeks {
+    public static void main(String[] args)
+    {
+        Thread.sleep(10000);
+        System.out.println("Hello Geeks");
+    }
+}
+Output:
+
+error: unreported exception InterruptedException; must be caught or declared to be thrown
+Explanation: In the above program, we are getting compile time error because there is a chance of exception if the main thread is going to sleep, other threads get the chance to execute the main() method which will cause InterruptedException. 
+
+Example 2: Using throws to Handle Exception
+
+
+class Geeks {
+    public static void main(String[] args)
+        throws InterruptedException
+    {
+        Thread.sleep(10000);
+        System.out.println("Hello Geeks");
+    }
+}
+Output:
+
+Hello Geeks
+Explanation: In the above program, by using the throws keyword we handled the InterruptedException and we will get the output as Hello Geeks.
+
+Example 3: Throwing an Exception with throws
+
+
+
+
+class Geeks {
+​
+    static void fun() throws IllegalAccessException
+    {
+        System.out.println("Inside fun(). ");
+        throw new IllegalAccessException("demo");
+    }
+​
+    public static void main(String args[])
+    {
+        try {
+            fun();
+        }
+        catch (IllegalAccessException e) {
+            System.out.println("Caught in main.");
+        }
+    }
+}
+
+Output
+Inside fun(). 
+Caught in main.
+Explanation: The above example throwing a IllegalAccessException from a method and handling it in the main method using a try-catch block.
+
+Difference Between throw and throws
+The main differences between throw and throws in Java are as follows:
+
+throw
+
+throws
+
+It is used to explicitly throw an exception.
+
+It is used to declare that a method might throw one or more exceptions.
+
+It is used inside a method or a block of code.
+
+It is used in the method signature.
+
+It can throw both checked and unchecked exceptions.
+
+It is only used for checked exceptions. Unchecked exceptions do not require throws
+
+The method or block throws the exception.
+
+The method's caller is responsible for handling the exception.
+
+Stops the current flow of execution immediately.
+
+It forces the caller to handle the declared exceptions.
+
+throw new ArithmeticException("Error");
+
+public void myMethod() throws IOException {}
