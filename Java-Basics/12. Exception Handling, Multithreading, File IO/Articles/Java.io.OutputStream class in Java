@@ -1,0 +1,70 @@
+This abstract class is the superclass of all classes representing an output stream of bytes. An output stream accepts output bytes and sends them to some sink. Applications that need to define a subclass of OutputStream must always provide at least a method that writes one byte of output. Constructor and Description
+OutputStream() : Single Constructor
+Methods:
+void close() : Closes this output stream and releases any system resources associated with this stream.
+Syntax :public void close()
+           throws IOException
+Throws:
+IOException
+void flush() : Flushes this output stream and forces any buffered output bytes to be written out.
+Syntax :public void flush()
+           throws IOException
+Throws:
+IOException
+void write(byte[] b) : Writes b.length bytes from the specified byte array to this output stream.
+Syntax :public void write(byte[] b)
+           throws IOException
+Parameters:
+b - the data.
+Throws:
+IOException 
+void write(byte[] b, int off, int len) : Writes len bytes from the specified byte array starting at offset off to this output stream.
+Syntax :public void write(byte[] b,
+         int off,
+         int len)
+           throws IOException
+Parameters:
+b - the data.
+off - the start offset in the data.
+len - the number of bytes to write.
+Throws:
+IOException 
+abstract void write(int b) : Writes the specified byte to this output stream.
+Syntax :public abstract void write(int b)
+                    throws IOException
+Parameters:
+b - the byte.
+Throws:
+IOException
+
+
+
+import java.io.*;
+//Java program to demonstrate OutputStream
+class OutputStreamDemo
+{
+    public static void main(String args[])throws Exception
+    {
+        OutputStream os = new FileOutputStream("file.txt");
+        byte b[] = {65, 66, 67, 68, 69, 70};
+        
+        //illustrating write(byte[] b) method
+        os.write(b);
+        
+        //illustrating flush() method
+        os.flush();
+​
+        //illustrating write(int b) method
+        for (int i = 71; i <75 ; i++) 
+        {
+            os.write(i);
+        }
+        
+        os.flush();
+        
+        //close the stream
+        os.close();
+    }
+}
+Output :
+ABCDEFGHIJ
