@@ -1,0 +1,107 @@
+Java InputStream class is the superclass of all the io classes i.e. representing an input stream of bytes. It represents an input stream of bytes. Applications that are defining a subclass of the Java InputStream class must provide a method, that returns the next byte of input. A reset() method is invoked which re-positions the stream to the recently marked position.
+
+Input_Stream-in-Java
+
+Declaration of Java InputStream Class
+public abstract class InputStream
+   extends Object
+      implements Closeable
+Constructor of InputStream Class in Java
+There is a constructor used with InputStream is mentioned below:
+
+InputStream(): Single Constructor
+Methods of Java InputStream Class
+Method	Description
+mark()	marks the current position of the input stream. It sets readlimit i.e. maximum number of bytes that can be read before the mark position becomes invalid.a 
+read()	reads next byte of data from the Input Stream
+close()	closes the input stream and releases system resources associated with this stream to Garbage collector.
+read()	reads number of bytes of arg.length from the input stream to the buffer array arg. The bytes read by read() method are returned as an int.
+reset()	invoked by mark() method. It repositions the input stream to the marked position.
+markSupported()              	checks whether the input stream is supporting the mark() and reset() method or not.
+skip()	skips and discards arg bytes in the input stream.
+1. mark()
+Java.io.InputStream.mark(int arg) marks the current position of the input stream. It sets readlimit i.e. maximum number of bytes that can be read before mark position becomes invalid. 
+
+Syntax :public void mark(int arg)
+
+Parameters :
+arg : integer specifying the read limit of the input Stream
+
+Return : 
+void
+2. read()
+java.io.InputStream.read() reads next byte of data from the Input Stream. The value byte is returned in the range 0 to 255. If no byte is available because the end of the stream has been reached, the value -1 is returned. 
+
+Syntax :public abstract int read()
+
+Parameters :
+------
+
+Return : 
+Reads next data else, -1 i.e. when end of file is reached.
+
+Exception :
+->  IOException : If I/O error occurs.
+3. close()
+java.io.InputStream.close() closes the input stream and releases system resources associated with this stream to Garbage Collector. 
+
+Syntax :public void close()
+
+Parameters :
+------
+
+Return : 
+void
+
+Exception :
+->  IOException : If I/O error occurs.
+4. read() : 
+Java.io.InputStream.read(byte[] arg) reads number of bytes of arg.length from the input stream to the buffer array arg. The bytes read by read() method are returned as int. If len is zero, then no bytes are read and 0 is returned; otherwise, there is an attempt to read at least one byte. 
+
+Syntax : public int read(byte[] arg)
+
+Parameters :
+arg : array whose number of bytes to be read
+
+Return : 
+ reads number of bytes and return to the buffer else, -1 i.e. when end of file is reached.
+
+Exception :
+->  IOException : If I/O error occurs.
+->  NullPointerException : if arg is null.
+5. reset() : 
+Java.io.InputStream.reset() is invoked by mark() method. It repositions the input stream to the marked position. 
+
+Syntax :public void reset()
+
+Parameters :
+----
+
+Return : 
+void
+
+Exception :
+->  IOException : If I/O error occurs.
+6. markSupported() :
+Java.io.InputStream.markSupported() method tests if this input stream supports the mark and reset methods. The markSupported method of InputStream returns false by default. 
+
+Syntax :public boolean markSupported()
+
+Parameters :
+-------
+
+Return : 
+true if input stream supports the mark() and reset() method  else,false
+7. skip() : 
+Java.io.InputStream.skip(long arg) skips and discards arg bytes in the input stream. 
+
+Syntax :public long skip(long arg)
+
+Parameters :
+arg : no. of bytes to be skipped
+
+Return : 
+skip bytes.
+
+Exception :
+->  IOException : If I/O error occurs.
