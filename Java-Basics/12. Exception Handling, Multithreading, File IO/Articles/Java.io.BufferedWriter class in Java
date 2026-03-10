@@ -1,0 +1,97 @@
+BufferedWriter class in Java is used to write text efficiently to character-based output streams. It stores characters in a buffer before writing them to the destination, thereby reducing the number of I/O operations and improving performance.
+
+Faster Writing: Writes large chunks of data at once instead of writing character by character.
+Easy to Use: Provides methods like write() and newLine() to simplify text output.
+Class Declaration 
+public class BufferedWriter extends Writer
+
+BufferedWriter class extends the Writer class, meaning it is a subclass specialized for buffered character output operations.
+
+Example: Writing Text to a File
+
+
+
+
+import java.io.*;
+​
+public class GFG{
+    
+    public static void main(String[] args){
+        
+        try {
+            BufferedWriter writer = new BufferedWriter(
+                new FileWriter("output.txt"));
+​
+            writer.write("Hello, World!");
+            writer.newLine();
+            writer.write(
+                "This is written using BufferedWriter.");
+​
+            writer.close();
+            System.out.println(
+                "File written successfully.");
+        }
+        catch (IOException e) {
+            System.out.println("An error occurred: "
+                               + e.getMessage());
+        }
+    }
+}
+
+Output
+File written successfully.
+output
+output
+Explanation: This program creates a BufferedWriter that wraps a FileWriter to write text efficiently to output.txt. The write() method writes text, and newLine() inserts a line break.
+
+Constructors of BufferedWriter Class
+1. BufferedWriter(Writer out): Creates a buffered character output stream using the specified writer.
+
+BufferedWriter bw = new BufferedWriter(new FileWriter("file.txt"));
+
+2. BufferedWriter(Writer out, int size): Creates a buffered character output stream with a custom buffer size.
+
+BufferedWriter bw = new BufferedWriter(new FileWriter("file.txt"), 8192);
+
+Example: Writing User Input to a File
+
+
+import java.io.*;
+
+public class GFG{
+    
+    public static void main(String[] args)
+        throws IOException{
+            
+        BufferedReader reader = new BufferedReader(
+            new InputStreamReader(System.in));
+
+        System.out.print("Enter text to save in file: ");
+        String text = reader.readLine();
+
+        BufferedWriter writer = new BufferedWriter(
+            new FileWriter("userInput.txt"));
+
+        writer.write(text);
+        writer.close();
+
+        System.out.println(
+            "Text written successfully to userInput.txt");
+    }
+}
+Output:
+
+output
+output
+output.txt:
+
+output
+output
+Methods in BufferedWriter class
+Method	Action
+close()	Closes the stream and releases system resources. Flushes the buffer before closing.
+flush()	Forces any buffered characters to be written to the output stream.
+newLine()	Writes a platform-dependent line separator.
+write(int c)	Writes a single character.
+write(char[] cbuf, int off, int len)	Writes a portion of a character array.
+write(String s, int off, int len)	Writes a portion of a string.
