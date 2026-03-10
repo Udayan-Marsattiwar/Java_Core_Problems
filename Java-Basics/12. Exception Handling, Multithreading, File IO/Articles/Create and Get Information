@@ -1,0 +1,83 @@
+In Java, the java.io.File class is used to create, delete, and get information about files and directories. This class provides several useful methods to handle file operations, such as checking if a file exists, retrieving file properties (e.g., file name, path, and size), and performing basic read/write operations.
+
+1. Creating a File
+To create a new file, you need to instantiate a File object and call its createNewFile() method. This method attempts to create a new file in the specified location. If the file already exists, the method will return false.
+
+Example:
+
+
+
+
+import java.io.File;
+import java.io.IOException;
+​
+class GfG {
+    public static void main(String[] args) {
+        try {
+            // Specify the file path
+            File obj = new File("D:\\File.txt");
+​
+            // Attempt to create the file
+            if (obj.createNewFile()) {
+                System.out.println("File created: " + obj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+        }
+    }
+}
+
+Explanation:
+
+We create a File object representing the file "D:\File.txt".
+The createNewFile() method is used to create the file if it doesn't exist already.
+If the file is created successfully, the file name is printed. If the file already exists, a message is printed indicating that.
+2. Getting File Information
+Once a file is created or if we need to retrieve details about an existing file, we can use various methods of the File class to get information. Here are some of the most common methods:
+
+exists(): Checks if the file or directory exists.
+getName(): Returns the name of the file or directory.
+getAbsolutePath(): Returns the absolute path of the file.
+canWrite(): Checks if the file is writable.
+canRead(): Checks if the file is readable.
+length(): Returns the size of the file in bytes.
+Example:
+
+
+
+
+import java.io.File;
+​
+class GfG {
+    public static void main(String[] args) {
+        // Specify the file path
+        File obj = new File("D:\\File.txt");
+​
+        // Check if the file exists
+        if (obj.exists()) {
+            // Print the file information
+            System.out.println("File Name: " + obj.getName());
+            System.out.println("Absolute Path: " + obj.getAbsolutePath());
+            System.out.println("Writable: " + obj.canWrite());
+            System.out.println("Readable: " + obj.canRead());
+            System.out.println("File Size: " + obj.length() + " bytes");
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+}
+
+Explanation:
+
+1. The exists() method is used to check if the file "D:\File.txt" exists.
+
+2. If the file exists, the following information is printed:
+
+File Name: The name of the file.
+Absolute Path: The full path to the file.
+Writable: Whether the file is writable or not.
+Readable: Whether the file is readable or not.
+File Size: The size of the file in bytes.
+3. If the file does not exist, a message is printed indicating so.
