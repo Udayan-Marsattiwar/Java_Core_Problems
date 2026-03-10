@@ -1,0 +1,125 @@
+A BufferedInputStream adds functionality to another input stream-namely, the ability to buffer the input and to support the mark and reset methods. When the BufferedInputStream is created, an internal buffer array is created. As bytes from the stream are read or skipped, the internal buffer is refilled as necessary from the contained input stream, many bytes at a time. Constructor and Description
+BufferedInputStream(InputStream in) : Creates a BufferedInputStream and saves its argument, the input stream in, for later use.
+BufferedInputStream(InputStream in, int size) : Creates a BufferedInputStream with the specified buffer size, and saves its argument, the input stream in, for later use.
+Methods:
+int available() : Returns an estimate of the number of bytes that can be read (or skipped over) from this input stream without blocking by the next invocation of a method for this input stream.
+Syntax:public int available()
+              throws IOException
+Returns:
+an estimate of the number of bytes that can be 
+read (or skipped over) from this input stream without blocking.
+Throws:
+IOException
+void close() : Closes this input stream and releases any system resources associated with the stream.
+Syntax:public void close()
+           throws IOException
+Overrides:
+close in class FilterInputStream
+Throws:
+IOException 
+void mark(int readlimit) : Marks the current position in this input stream.
+Syntax:public void mark(int readlimit)
+Overrides:
+mark in class FilterInputStream
+Parameters:
+readlimit - the maximum limit of bytes that can be read 
+before the mark position becomes invalid.
+boolean markSupported() : Tests if this input stream supports the mark and reset methods.
+Syntax:public boolean markSupported()
+Overrides:
+markSupported in class FilterInputStream
+Returns:
+a boolean indicating if this stream type supports the mark and reset methods.
+int read() : Reads the next byte of data from the input stream.
+Syntax:public int read()
+         throws IOException
+Returns:
+the next byte of data, or -1 if the end of the stream is reached.
+Throws:
+IOException 
+int read(byte[] b, int off, int len) : Reads bytes from this byte-input stream into the specified byte array, starting at the given offset.
+Syntax:public int read(byte[] b,
+       int off,
+       int len)
+         throws IOException
+Parameters:
+b - destination buffer.
+off - offset at which to start storing bytes.
+len - maximum number of bytes to read.
+Returns:
+the number of bytes read, or -1 if the end of the stream has been reached.
+Throws:
+IOException 
+void reset() : Repositions this stream to the position at the time the mark method was last called on this input stream.
+Syntax:public void reset()
+           throws IOException
+Overrides:
+reset in class FilterInputStream
+Throws:
+IOException
+long skip(long n) :Skips over and discards n bytes of data from this input stream
+Syntax:public long skip(long n)
+          throws IOException
+Parameters:
+n - the number of bytes to be skipped.
+Returns:
+the actual number of bytes skipped.
+Throws:
+IOException
+Program:
+
+
+
+// Java program to demonstrate working of BufferedInputStream
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+​
+// Java program to demonstrate BufferedInputStream methods
+class BufferedInputStreamDemo
+{
+    public static void main(String args[]) throws IOException
+    {
+        // attach the file to FileInputStream
+        FileInputStream fin = new FileInputStream("file1.txt");
+​
+        BufferedInputStream bin = new BufferedInputStream(fin);
+​
+        // illustrating available method
+        System.out.println("Number of remaining bytes:" +
+                                            bin.available());
+​
+        // illustrating markSupported() and mark() method
+        boolean b=bin.markSupported();
+        if (b)
+            bin.mark(bin.available());
+​
+        // illustrating skip method
+        /*Original File content:
+        * This is my first line
+        * This is my second line*/
+        bin.skip(4);
+        System.out.println("FileContents :");
+​
+        // read characters from FileInputStream and
+        // write them
+        int ch;
+        while ((ch=bin.read()) != -1)
+            System.out.print((char)ch);
+​
+        // illustrating reset() method
+        bin.reset();
+        while ((ch=bin.read()) != -1)
+            System.out.print((char)ch);
+​
+        // close the file
+        fin.close();
+    }
+}
+Output:
+Number of remaining bytes:47
+FileContents :
+ is my first line
+This is my second line
+This is my first line
+This is my second line
