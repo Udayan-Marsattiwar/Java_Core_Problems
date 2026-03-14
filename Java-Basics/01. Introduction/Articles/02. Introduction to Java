@@ -1,0 +1,75 @@
+Java is a high-level, object-oriented programming language developed by Sun Microsystems in 1995. It is mostly used for building desktop applications, web applications, Android apps and enterprise systems.
+
+
+-> Features of Java
+1. Object-Oriented Programming (OOP): Java supports OOP concepts to create modular and reusable code.
+2. Platform Independence: Java programs can run on any operating system with a JVM.
+3. Robust and Secure: Java ensures reliability and security through strong memory management and exception handling.
+4. Multithreading and Concurrency: Java allows concurrent execution of multiple tasks for efficiency.
+5. Rich API and Standard Libraries: Java provides extensive built-in libraries for various programming needs.
+6. Frameworks for Enterprise and Web Development: Java supports frameworks that simplify enterprise and web application development.
+7. Open-Source Libraries: Java has a wide range of libraries to extend functionality and speed up development.
+8. Maintainability and Scalability: Java’s structured design allows easy maintenance and growth of applications.
+
+-> Understanding the Hello World Program in Java
+When we learn any programming language, the first step is writing a simple program to display "Hello World". So, here is a simple Java program that displays "Hello World" on the screen.
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+Output
+Hello World!
+
+-> How to run the above code?
+1. Write code in a file like HelloWorld.java.
+2. Java Compiler "javac" compiles it into bytecode "HelloWorld.class".
+3. JVM (Java Virtual Machine) reads the .class file and interprets the bytecode.
+4. JVM converts bytecode to machine readable code i.e. "binary" (001001010) and then execute the program.
+
+-> Comments in Java
+Comments are the notes written inside the code to explain what we are doing. The comment lines are not executed while we run the program.
+1. Single-line comment
+// This is a comment
+2. Multi-line comment
+/*
+This is a multi-line comment.
+This is useful for explaining larger sections of code.
+*/
+
+-> Curly Braces and Indentation in Java
+In Java, curly braces {} are used to define blocks of code. For example, the body of a class or method is enclosed within curly braces.
+Example:
+public class Geeks{
+    public static void main(String[] args) {
+        {
+            System.out.println("This is inside the block.");
+        }
+
+        System.out.println("This is outside the block.");
+    }
+}
+1. The code block inside {} runs unconditionally and prints a message.
+2. Curly braces {} group multiple statements into a single block, even without conditions.
+
+-> Famous Applications Built Using Java
+1. Android Apps: Most of the Android mobile apps are built using Java.
+2. Netflix: This uses Java for content delivery and backend services.
+3. Amazon: Java language is used for its backend systems.
+4. LinkedIn: This uses Java for handling high traffic and scalability.
+5. Minecraft: This is one of the world’s most popular games that is built in Java.
+6. Spotify: This uses Java in parts of its server-side infrastructure.
+7. Uber: Java is used for backend services like trip management.
+8. NASA WorldWind: This is a virtual globe software built using Java.
+
+-> What Can We Do with Java?
+Java is used for:
+1. Mobile App Development: Android development using Android Studio.
+2. Web Development: Using frameworks like Spring, Spring Boot, Struts, Hibernate
+3. Desktop GUI Applications: With libraries like JavaFX and Swing.
+4. Enterprise Applications: Backbone of banking, ERP and large-scale business software.
+5. Game Development: With engines like LibGDX and jMonkeyEngine.
+6. Big Data Technologies: Like Hadoop and Apache Kafka.
+7. Internet of Things (IoT): Java can run on embedded systems and devices.
+8. loud-based Applications: Java is used in services on AWS, Azure and Google Cloud.
+9. Scientific Applications: Java is used in tools that process large amounts of scientific data.
