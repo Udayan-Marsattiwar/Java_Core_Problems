@@ -1,0 +1,19 @@
+When learning a new language, we first learn to output some message. Here we will start with the famous "Hello World" message.
+Complete the java class named "GFG" to print "Hello World".
+
+Example:
+
+Output: "Hello World"
+
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		//code here
+		System.out.println("Hello World");
+	}
+}
