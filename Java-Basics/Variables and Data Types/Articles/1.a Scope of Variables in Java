@@ -1,0 +1,301 @@
+The scope of variables is the part of the program where the variable is accessible. Like C/C++, in Java, all identifiers are lexically (or statically) scoped, i.e., scope of a variable can be determined at compile time and independent of the function call stack. In this article, we will learn about Java Scope Variables.
+
+-> Java Scope of Variables
+Java Scope Rules can be covered under the following categories. 
+a. Instance Variables
+b. Static Variables
+c. Local Variables
+d. Parameter Scope
+e. Block Scope
+Now we will discuss all these Scopes and variables according to them.
+
+1. Instance Variables - Class Level Scope
+Instance variables are non-static variables declared inside a class but outside any method or constructor. Each object of the class gets its own copy. Let's take a look at an example: 
+public class Test {
+         // All variables defined directly inside a class
+         // are member variables
+         int a;
+         private String b;
+
+         void method1() {....} 
+         int method2() {....}
+
+         char c; 
+}
+
+a. We can declare class variables anywhere in the class, but outside methods.
+b. Access specified of member variables doesn't affect scope of them within a class.
+c. Member variables can be accessed outside a class.
+
+-> Access Modifiers and Member Variable Scope
+Modifier
+
+Package
+
+Subclass
+
+World
+
+public
+
+Yes
+
+Yes
+
+Yes
+
+protected
+
+Yes
+
+Yes
+
+No
+
+Default (no modifier)
+
+Yes
+
+No
+
+No
+
+private
+
+No
+
+No
+
+No
+
+2. Static Variables - Class Level Scope
+Static variables are class-level variables declared using the static keyword. Only one copy exists per class, and it is shared among all objects.
+
+Example:
+// Using Static variables
+import java.io.*;
+​
+class Test{
+    // static variable in Test class
+    static int var = 10;
+}
+​
+class Geeks 
+{
+    public static void main (String[] args) {
+        // accessing the static variable
+        System.out.println("Static Variable : "+Test.var);
+    }
+}
+
+Output
+Static Variable : 10
+
+3. Method Level Scope - Local Variable
+Variables declared inside a method have method level scope and can't be accessed outside the method. 
+public class Test {
+      void method1()
+      {
+          // Local variable (Method level scope)
+          int x;
+     }
+ }
+
+Note: Local variables don't exist after method's execution is over. 
+
+4. Parameter Scope - Local Variable
+Here's another example of method scope, except this time the variable got passed in as a parameter to the method: 
+class Test {
+     private int x;
+
+     public void setX(int x) {
+           this.x = x;
+     }
+ }
+
+The above code uses this keyword to differentiate between the local and class variables.
+
+Example of Method and Parameter Scope:
+
+// Using Method Scope and Parameter Scope
+public class Geeks 
+{
+    // Class Scope variable
+    static int x = 11;
+  
+    // Instance Variable
+    private int y = 33;
+​
+    // Parameter Scope (x)
+    public void testFunc(int x) {
+        // Method Scope (t)
+        Geeks t = new Geeks(); 
+        this.x = 22; 
+        y = 44; 
+​
+        // Printing variables with different scopes
+        System.out.println("Geeks.x: " + Geeks.x); 
+        System.out.println("t.x: " + t.x); 
+        System.out.println("t.y: " + t.y); 
+        System.out.println("y: " + y); 
+    }
+​
+    // Main Method
+    public static void main(String args[]) {
+        Geeks t = new Geeks();
+        t.testFunc(5); 
+    }
+}
+
+Output
+Geeks.x: 22
+t.x: 22
+t.y: 33
+y: 44
+
+5. Block Level Scope
+A variable declared inside pair of brackets "{" and "}" in a method has scope within the brackets only.
+Example:
+// Using Block Scope
+public class Test
+{
+    public static void main(String args[])
+    {
+        // Block Level Scope
+        {
+            // The variable x has scope within
+            // brackets
+            int x = 10;
+            System.out.println(x);
+        }
+        
+        // Uncommenting below line would produce
+        // error since variable x is out of scope.
+​
+        // System.out.println(x); 
+    }
+}
+
+Output
+10
+
+-> Incorrect Usage of Local Variables
+1. For Block Level Cases which are wrong
+Let's look at tricky example of loop scope. Predict the output of following program. You may be surprised if you are regular C/C++ programmer. 
+Programs:
+class Test
+{
+    public static void main(String args[])
+    {
+      	// local variable declared
+        int a = 5;
+      
+      	// for loop variable declared 
+        for (int a = 0; a < 5; a++)
+        {
+            System.out.println(a);
+        }
+    }
+}
+
+
+/*
+Output: 
+
+6: error: variable a is already defined in method go(int)
+       for (int a = 0; a < 5; a++)       
+                ^
+1 error
+*/
+Note: In C++, Program 1 will run. But in Java it is an error because in Java, the name of the variable of inner and outer loop must be different. A similar program in C++ works. See this.
+
+2. Incorrect Way to use Local Variable - Block Scope
+
+
+
+class Test
+{
+    public static void main(String args[])
+    {
+        for (int x = 0; x < 4; x++)
+        {
+            System.out.println(x);
+        }
+​
+        // Will produce error
+        System.out.println(x);
+    }
+}
+​
+​
+/* 
+Output: 
+11: error: cannot find symbol
+System.out.println(x);      
+​
+*/
+Output:
+
+0 1 2 3 4
+Java Program Demonstrating All Variable Scopes
+Example:
+
+
+
+
+public class Geeks {
+​
+    // Instance Variable (belongs to each object)
+    private int instanceVar = 10;
+​
+    // Static Variable (shared among all instances)
+    static int staticVar = 100;
+​
+    // Constructor demonstrating parameter scope
+    public Geeks(int instanceVar) {
+        
+        // Parameter Scope 
+        // using 'this' to refer to instance variable
+        this.instanceVar = instanceVar;
+    }
+​
+    // Method to demonstrate local, parameter, and block scope
+    public void showScopes(int paramVar) {
+        
+        // Local Variable 
+        // only accessible in this method
+        int localVar = 20;
+​
+        System.out.println("Instance Variable: " + instanceVar);
+        System.out.println("Static Variable: " + staticVar);
+        System.out.println("Method Parameter: " + paramVar);
+        System.out.println("Local Variable: " + localVar);
+​
+        // Block Scope (variable only accessible inside this block)
+        if (localVar > 10) {
+            int blockVar = 5;
+            System.out.println("Block Variable: " + blockVar);
+        }
+​
+        // Uncommenting below line would cause an error: blockVar out of scope
+        // System.out.println(blockVar);
+    }
+​
+    public static void main(String[] args) {
+        Geeks obj = new Geeks(50);
+        obj.showScopes(30);
+    }
+}
+
+Output
+Instance Variable: 50
+Static Variable: 100
+Method Parameter: 30
+Local Variable: 20
+Block Variable: 5
+Important Points about Variable Scope in Java 
+In general, a set of curly brackets { } defines a scope.
+In Java we can usually access a variable as long as it was defined within the same set of brackets as the code we are writing or within any curly brackets inside of the curly brackets where the variable was defined.
+Any variable defined in a class outside of any method can be used by all member methods.
+When a method has the same local variable as a member, "this" keyword can be used to reference the current class variable.
+For a variable to be read after the termination of a loop, It must be declared before the body of the loop. 
