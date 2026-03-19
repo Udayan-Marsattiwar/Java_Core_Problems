@@ -1,0 +1,98 @@
+The toArray() method of ArrayList is used to convert the list into an array while preserving the order of elements. It is commonly used when array-based processing is required or when interacting with APIs that work with arrays instead of collections.
+
+-> Method Declaration
+         public Object[] toArray()
+                      or 
+         public <T> T[] toArray(T[] a)
+
+Parameters:
+a. toArray() -> No parameters
+b. toArray(T[] a) -> a is the array into which list elements are stored; if it is not large enough, a new array of the same type is returned
+
+Return Type:
+a. Object[] -> For the no-argument version
+b. T[] -> For the generic version, containing all elements of the ArrayList
+
+-> Examples of Java ArrayList.toArray() method
+
+Example 1 :Converting an ArrayList to an Array using toArray() Method in Java
+The following Java program demonstrates how to convert an ArrayList to an array using the toArray() method. This example showcases the basic usage of the ArrayList and how its elements can be retrieved and stored in the array.
+import java.util.*;
+​public class GFG {
+    public static void main(String[] args)
+    {
+​
+        // create object of ArrayList
+        ArrayList<Integer> ArrLis
+            = new ArrayList<Integer>();
+​
+        // Add elements
+        ArrLis.add(32);
+        ArrLis.add(67);
+        ArrLis.add(98);
+        ArrLis.add(100);
+​
+        // print ArrayList
+        System.out.println("ArrayList: " + ArrLis);
+​
+        // Get the array of the elements
+        // of the ArrayList
+        // using toArray() method
+        Object[] arr = ArrLis.toArray();
+​
+        System.out.println("Elements of ArrayList"
+                           + " as Array: "
+                           + Arrays.toString(arr));
+    }
+}
+
+Output
+ArrayList: [32, 67, 98, 100]
+Elements of ArrayList as Array: [32, 67, 98, 100]
+
+Explanation:
+a. This Java program demonstrates the use of ArrayList's toArray() method to convert its elements into a regular array.
+b. First, integers are added to the ArrayList.
+c. Then, the toArray() method is called to obtain an array representation of the ArrayList's elements, which is printed using Arrays.toString(arr).
+
+Example 2 : Converting an ArrayList to a Typed Array using toArray(T[]) Method in Java
+This Java program demonstrates how to convert an ArrayList of integers into an array of the integers using the toArray(T[]) method. This method is particularly useful when we want to specify the type of the array ensuring the type safety and avoiding the need for the type casting.
+import java.util.*;
+​// Driver Class
+public class GFG {
+    // main function
+    public static void main(String[] args)
+    {
+        // create object of ArrayList
+        ArrayList<Integer> ArrLis
+            = new ArrayList<Integer>();
+​
+        // Add elements
+        ArrLis.add(32);
+        ArrLis.add(67);
+        ArrLis.add(98);
+        ArrLis.add(100);
+​
+        // print ArrayList
+        System.out.println(" ArrayList: " + ArrLis);
+​
+        // Get the array of the elements
+        // of the ArrayList
+        // using toArray(T[]) method
+        Integer arr[] = new Integer[ArrLis.size()];
+        arr = ArrLis.toArray(arr);
+​
+        System.out.println(" Elements of ArrayList "
+                           + "as Array: "
+                           + Arrays.toString(arr));
+    }
+}
+
+Output
+ ArrayList: [32, 67, 98, 100]
+ Elements of ArrayList as Array: [32, 67, 98, 100]
+
+-> Explanation of the Program:
+a. This Java program showcases the ArrayList method toArray(T[]), which converts an ArrayList to an array of specified type T.
+b. First, integers are added to ArrLis.
+c. Then, an Integer array of the same size is initialized and passed to toArray(arr) to obtain the array representation of ArrLis, printed using Arrays.toString(arr).
