@@ -1,0 +1,179 @@
+In Java, a collection of objects represents a group of individual elements treated as a single unit. Java provides a powerful and flexible Collection Framework (introduced in JDK 1.2) to store, manipulate, and iterate over groups of objects efficiently.
+
+Collection Framework is located in the java.util package and consists of:
+a. Collection Interface (java.util.Collection): root interface for List, Set, Queue
+b. Map Interface (java.util.Map): root interface for key-value pairs
+
+-> Methods to Iterate Through Collection Objects in Java
+Method 1: Using an enhanced for loop 
+The enhanced for loop is the simplest and most readable way to iterate through a collection.
+Syntax used :
+for (datatype variable: collection) {
+    // statements
+}
+
+import java.util.*;
+​
+class GFG {
+    public static void main(String[] args) {
+​
+        // Declaring the ArrayList
+        Collection<String> gfg = new ArrayList<>();
+​
+        // Adding elements
+        gfg.add("Abhishek Rout");
+        gfg.add("Vaibhav Kamble");
+        gfg.add("Anupam Kumar");
+​
+        // Iterating using enhanced for loop
+        for (String name : gfg) {
+            System.out.println("Name : " + name);
+        }
+    }
+}
+
+Output
+Name : Abhishek Rout
+Name : Vaibhav Kamble
+Name : Anupam Kumar
+
+a. Works with all Iterable collections
+b. Cannot modify the collection while iterating
+c. Best for read-only traversal
+
+Method 2: Using Iterator Interface
+The Iterator interface provides controlled iteration and allows element removal during traversal.
+Syntax used :
+Iterator<Type> iterator = collection.iterator();
+while (iterator.hasNext()) {
+    Type element = iterator.next();
+}
+
+import java.util.*;
+​class GFG {
+    public static void main(String[] args) {
+​
+        // Declaring the LinkedList
+        LinkedList<String> gfg = new LinkedList<>();
+​
+        // Adding elements
+        gfg.add("Abhishek Rout");
+        gfg.add("Vaibhav Kamble");
+        gfg.add("Anupam Kumar");
+​
+        // Using Iterator with for loop
+        System.out.println("Using For Loop");
+        for (Iterator<String> it = gfg.iterator(); it.hasNext(); ) {
+            System.out.println("Name : " + it.next());
+        }
+​
+        // Using Iterator with while loop
+        System.out.println("\nUsing While Loop");
+        Iterator<String> it = gfg.iterator();
+        while (it.hasNext()) {
+            System.out.println("Name : " + it.next());
+        }
+    }
+}
+
+Output
+Using For Loop
+Name : Abhishek Rout
+Name : Vaibhav Kamble
+Name : Anupam Kumar
+
+Using While Loop
+Name : Abhishek Rout
+Name : Vaibhav Kamble
+Name : Anupam Kumar
+
+a. Allows safe removal using iterator.remove()
+b. Preferred when modifying collections
+c. More flexible than enhanced for loop
+
+-> Method 3: Using Simple For Loop (Index-Based Iteration)
+This approach is applicable only for indexed collections like List, ArrayList, Vector.
+Syntax used :
+for (int i = 0; i < collection.size(); i++) {
+    collection.get(i);
+}
+
+import java.util.*;
+​
+class GFG{
+    public static void main(String[] args) {
+​
+        // Declaring the Vector
+        Vector<String> gfg = new Vector<>();
+​
+        // Adding elements
+        gfg.add("Abhishek Rout");
+        gfg.add("Vaibhav Kamble");
+        gfg.add("Anupam Kumar");
+​
+        // Iterating using simple for loop
+        for (int i = 0; i < gfg.size(); i++) {
+            System.out.println("Name " + (i + 1) + ": " + gfg.get(i));
+        }
+    }
+}
+
+Output
+Name 1: Abhishek Rout
+Name 2: Vaibhav Kamble
+Name 3: Anupam Kumar
+
+a. Allows access using index
+b. Not applicable to Set or Queue
+c. Less efficient for LinkedList
+
+Method 4: Using forEach() Method (Java 8+)
+Java 8 introduced the forEach() method, which uses lambda expressions and functional programming concepts.
+Syntax used :
+a. With Lambda Expression
+collection.forEach(element -> {
+    System.out.println(element);
+});
+
+b. With Method Reference
+collection.forEach(System.out::println);
+
+import java.util.*;
+​
+class GFG {
+    public static void main(String[] args) {
+​
+        // Declaring the ArrayList
+        ArrayList<String> gfg = new ArrayList<>();
+​
+        // Adding elements
+        gfg.add("Abhishek Rout");
+        gfg.add("Vaibhav Kamble");
+        gfg.add("Anupam Kumar");
+​
+        // Using forEach with lambda
+        System.out.println("With iterable");
+        gfg.forEach(name -> {
+            System.out.println("Name : " + name);
+        });
+​
+        // Using forEach with method reference
+        System.out.println("\nWithout iterable");
+        gfg.forEach(System.out::println);
+    }
+}
+
+Output
+With iterable
+Name : Abhishek Rout
+Name : Vaibhav Kamble
+Name : Anupam Kumar
+
+Without iterable
+Abhishek Rout
+Vaibhav Kamble
+Anupam Kumar
+
+a. Clean and concise syntax
+b. Best for functional-style programming
+c. Not suitable when exception handling or breaking loops is required
